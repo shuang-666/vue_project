@@ -1,7 +1,6 @@
 <template>
   <div class="main_box">
     <router-view></router-view>
-
     <div class="main_content">
       <div class="main_nr" v-for="item in navlist" :key="item.id">
         <router-link :to="item.url" @click.native="selectNav(item.url)">
@@ -80,7 +79,7 @@ export default {
 <style lang="scss">
 .main_box {
   width: 100vw;
-  height: 100vh;
+  // height: 100vh;
   background-color: #f0f2f5;
 }
 .main_content {
