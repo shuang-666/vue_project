@@ -28,7 +28,9 @@
         <div class="userInfo_content_box_name" @click="name(userInfo.nickname)">
           <div class="userInfo_content_box_name_title">昵称</div>
           <div class="userInfo_content_box_name_right">
-            <div class="userInfo_content_box_name_right_one">{{ userInfo.nickname }}</div>
+            <div class="userInfo_content_box_name_right_one">
+              {{ userInfo.nickname }}
+            </div>
             <div class="userInfo_content_box_name_right_two">
               <van-icon name="arrow" size="25" />
             </div>
@@ -38,14 +40,19 @@
         <div class="userInfo_content_box_name">
           <div class="userInfo_content_box_name_title">手机号</div>
           <div class="userInfo_content_box_name_right">
-            <div class="userInfo_content_box_name_right_one">{{ userInfo.mobile }}</div>
+            <div class="userInfo_content_box_name_right_one">
+              {{ userInfo.mobile }}
+            </div>
           </div>
         </div>
         <!-- 性别 -->
         <div class="userInfo_content_box_name" @click="sexClick(userInfo.sex)">
           <div class="userInfo_content_box_name_title">性别</div>
           <div class="userInfo_content_box_name_right">
-            <div class="userInfo_content_box_name_right_one" v-html="sexs(userInfo.sex)"></div>
+            <div
+              class="userInfo_content_box_name_right_one"
+              v-html="sexs(userInfo.sex)"
+            ></div>
             <div class="userInfo_content_box_name_right_two">
               <van-icon name="arrow" size="25" />
             </div>
@@ -55,7 +62,10 @@
         <div class="userInfo_content_box_name" @click="showPopup">
           <div class="userInfo_content_box_name_title">出生日期</div>
           <div class="userInfo_content_box_name_right">
-            <div class="userInfo_content_box_name_right_one" v-html="birthdays(userInfo.birthday)"></div>
+            <div
+              class="userInfo_content_box_name_right_one"
+              v-html="birthdays(userInfo.birthday)"
+            ></div>
             <div class="userInfo_content_box_name_right_two">
               <van-icon name="arrow" size="25" />
             </div>
@@ -70,13 +80,15 @@
               class="userInfo_content_box_name_right_one"
             >
               {{ userInfo.province_name }},{{ userInfo.city_name }},{{
-              userInfo.district_name
+                userInfo.district_name
               }}
             </div>
             <div
               class="userInfo_content_box_name_right_one"
               v-if="this.userInfo.province_name == ''"
-            >请选择</div>
+            >
+              请选择
+            </div>
             <div class="userInfo_content_box_name_right_two">
               <van-icon name="arrow" size="25" />
             </div>
@@ -92,7 +104,9 @@
               :key="index"
               @click="sunject(item.attr_id)"
               v-if="item.attr_id == '2'"
-            >{{ item.attr_value }}</div>
+            >
+              {{ item.attr_value }}
+            </div>
             <div class="userInfo_content_box_name_right_two">
               <van-icon name="arrow" size="25" />
             </div>
@@ -107,7 +121,9 @@
               v-for="(item, index) in attrUser"
               :key="index"
               v-if="item.attr_id == '1'"
-            >{{ item.attr_value }}</div>
+            >
+              {{ item.attr_value }}
+            </div>
             <div class="userInfo_content_box_name_right_two">
               <van-icon name="arrow" size="25" />
             </div>
@@ -132,7 +148,12 @@
     </van-popup>
     <!-- 点击年级 -->
     <van-popup v-model="classShow" position="bottom" :style="{ height: '40%' }">
-      <van-picker show-toolbar :columns="columns" @confirm="onConfirm" @cancel="onCancel"></van-picker>
+      <van-picker
+        show-toolbar
+        :columns="columns"
+        @confirm="onConfirm"
+        @cancel="onCancel"
+      ></van-picker>
     </van-popup>
 
     <!-- 头像 -->
@@ -140,7 +161,12 @@
       <div class="popup">
         <div>
           拍照
-          <input type="file" accept="image/*" capture="camera" @change="paishe($event)" />
+          <input
+            type="file"
+            accept="image/*"
+            capture="camera"
+            @change="paishe($event)"
+          />
         </div>
         <div>
           用手机相册

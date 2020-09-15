@@ -6,7 +6,7 @@
         <van-icon name="arrow-left" size="22" color="#999" />
       </div>
       <div class="study_box_header_name">{{ study.title }}</div>
-      <div class="study_box_header_right">
+      <div class="study_box_header_right" @click="rli">
         <div class="calendar"></div>
       </div>
     </div>
@@ -52,7 +52,7 @@
     </div>
     <!-- 底部 -->
     <div class="bottom">
-      <p class="btn">
+      <p class="btn" @click="comment">
         <img
           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAhCAYAAACxzQkrAAAE30lEQVRYR7WYXYwTVRTH/+e22x2g0yVoVh9IRGNCiIkPCEGjxkQe/ODFlzUQMDyoaNiklum0sismoyjJMjOdZj8wRCNqDApVNCEGkn3QIMFoEBXF+KIh6wcmfC2702W77dxjLtndlNpu26Xc13s+fnPuOeeeO4SbtCzLiui6voKZtwN4EEBARMeFEN6VK1dOW5ZVquaabgaPZVmarutJZk4AuHXGBxExM/8thOgfGxvzqkHdFCDXdV9n5m0AojU+OE9EO5LJZLZyv+VAjuNsAPA+gLa5os/M50Oh0FrDMH4ul2sZUH9/f7vv+zFN03wppcobY44IKYYiEW1LJpNDLQeyLCus6/oeAAsKhUJC07QJKeUOZjaISKsRKQngVdM0d7UUyPO8xVLKAWbeNG34YKlU2jI5OXlV13WbmV8A0F4JxcyTALamUql9LQMaHBy8pVAoZKWUTxNRpMzwESnlSx0dHWfHx8dVcvcAWFwB9X0kEnkqHo//1RIg27YXAfiIiB4DUA6j7AcAjkopn9M07XKhUFBH9woApaPWBSHEOsMwvmtJlQ0NDd0+MTGxj4gen6uSiGi4vb19Q2dn5+jIyIilckoI8U8oFNqUSCS+bUlj7OvrWxoKhfYw8xNEFK7XWInoaynl1nw+/2s0Gt0opfwjlUqdUE3yhoGy2extpVLpEwD3A6gLoxwysySiY+FweHMikfhzGqIqjNpruA9lMpm7pJT7AaypF5WKfeX8jBBivWEYZ+rpNgTU19e3XAixl4geAhCqZ7R8n5lPEdGLpmmeVAGrp1sXKJPJ3C2lPATgHgCinsHrSpjoZBAE69Pp9O+N6s0FRK7r3qtKm5lXNGpwWk514RPhcHhjIpEYaUa3JpDjOKsBvAVgZTO5Nu18GEDcNM3fmoGpmdTZbHZNEAT7mfnOecAcllJuSafT/zYLUxXIcZz7AHwK4I4mDarufHhqampLb2/v+SZ1Z8X/d2Se560MgmAQwAONGp2eBD8mopeTyeRMr2lU/Tq564Bs296Uz+f3x2KxZcx8gJlXNWBVlfLeYrHY29PTc7kB+TlFZoEymcwqKeUxAKbv++8sXLhwiRDic2ZeTURVy52ZS0T0biQSScXj8bEbhSnPIVXibzPzswAuAnB833disdgKKaUHYG0VZwpG3Wk7TdO80AqYWSDP85YFQXAUwPJpw2oI3xuNRrfn8/lOKeUHAB4tc6rGz51Sykwqlcq3CmYWyHGcZwCoRI7NGGfmKeVUCOHGYrEFo6OjOQCPAFDvKVcI8YZhGFdbCXMNSD3ootHoAIDnq/QcH8AeXddf831/KTO/SUSnNU3zuru71V7LF2UymSXM/AUzq5Gi2ioQ0QE10xSLRe3cuXP+wMBAoVLQtu11RKSeQE3dd2V21JhykBzHUQ3wJwAdFU5UOZeYeUwI8UsQBIl0Ov1jrZC4rqtGC/V0rnth17BxbUwh27bVgH6gQmiciL4BMMzMX/q+/4NlWerCrLl27979ZDgcflhKOe8IMfNxFaH3AGwGoEJ2ipk/UyCRSOTspUuXLtYDKSfs6uoKdXV1zSuvcrkccrlcoIByau5ta2s7VPkkqZIni4ho9ufBvDzPoVQsFseaOm/XdXcxc6rZqbFBcJVDXzUL1M3M6o9FQwN+gyAzYiplPvwPh2MJ5xnUb/8AAAAASUVORK5CYII="
           alt
@@ -77,6 +77,20 @@
         <span class="name">移出列表</span>
       </p>
     </div>
+
+    <van-popup v-model="show">
+      <div class="star">
+        星级：
+        <span>
+          <van-rate v-model="value" size="25" />
+        </span>
+      </div>
+      <div class="contentsss">
+        内容：
+        <textarea name v-model="content" id cols="23" rows="4"></textarea>
+      </div>
+      <div class="submit" @click="sure">确定</div>
+    </van-popup>
   </div>
 </template>
 
@@ -88,13 +102,41 @@ export default {
       id: this.$route.query.course_id,
       study: [], //讲师的信息
       periods: [], //所有的课程
-      token: localStorage.getItem("msmkToken")
+      token: localStorage.getItem("msmkToken"),
+      show: false,
+      value: 5,
+      content: ""
     };
   },
   created() {
     this.studyDetails();
   },
   methods: {
+    sure() {
+      this.$network
+        .getStudyComment({
+          content: this.content,
+          course_id: this.study.course_id,
+          grade: this.value,
+          type: 1
+        })
+        .then(res => {
+          console.log(res);
+          if (res.data.code == 201) {
+            this.$toast(res.data.msg);
+            return;
+          }
+          this.show = false;
+        });
+    },
+    comment() {
+      this.show = true;
+    },
+    rli() {
+      this.$router.push({
+        path: "/study-calendar"
+      });
+    },
     // 获取课程数据
     curriculum(video_id, periods_title) {
       this.$router.push({
@@ -289,6 +331,36 @@ export default {
         margin-left: 1.33333vw;
       }
     }
+  }
+  /deep/.van-popup {
+    width: 500px;
+    height: 300px;
+    padding: 50px;
+    border-radius: 20px;
+  }
+  /deep/ .van-progress {
+    width: 450px;
+    height: 10px;
+    border-radius: 10px;
+  }
+  .star {
+    display: flex;
+    align-items: center;
+  }
+  .contentsss {
+    margin-top: 20px;
+    display: flex;
+    align-items: left;
+  }
+  .submit {
+    width: 150px;
+    height: 80px;
+    line-height: 80px;
+    margin: 20px auto;
+    background-color: orange;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
   }
 }
 </style>

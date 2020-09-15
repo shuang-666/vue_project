@@ -23,7 +23,7 @@
         <div class="rp-empty">
           <img src="https://wap.365msmk.com/img/no-message.8d3ca5af.png" alt />
           <p>还没有待上课记录哦</p>
-          <button class="van-button van-button--default van-button--normal">
+          <button class="van-button van-button--default van-button--normal" @click="recordClick">
             <span>立即约课</span>
           </button>
         </div>
@@ -41,7 +41,7 @@
         <div class="rp-empty">
           <img src="https://wap.365msmk.com/img/no-message.8d3ca5af.png" alt />
           <p>还没有上课记录哦</p>
-          <button class="van-button van-button--default van-button--normal">
+          <button class="van-button van-button--default van-button--normal" @click="recordClick">
             <span>立即约课</span>
           </button>
         </div>
@@ -75,6 +75,11 @@ export default {
   methods: {
     select(index) {
       this.selIndex = index;
+    },
+    recordClick() {
+      this.$router.push({
+        path: "/oto"
+      });
     }
   }
 };

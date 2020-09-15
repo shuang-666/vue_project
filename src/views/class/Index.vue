@@ -275,6 +275,7 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10000;
     .class_header_name {
       font-size: 35px;
       color: #333;
@@ -293,6 +294,7 @@ export default {
     position: fixed;
     top: 100px;
     left: 0;
+    z-index: 10000;
     .option2_one {
       padding: 20px;
       text-align: center;

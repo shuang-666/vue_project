@@ -73,6 +73,7 @@ export default {
   box-sizing: border-box;
   padding: 30px 30px;
   position: relative;
+  border: 1px solid #eee;
   .listtwo_box_one {
     font-size: 32px;
     color: #333;

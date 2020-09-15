@@ -24,5 +24,14 @@ export const path = {
   chapter: "/courseChapter", //课程大纲
   order: "/order/downOrder", //点击立即报名的接口
   invite: "/teacher/invite", //一周数据
-  photo: "/public/img" // 图片
+  photo: "/public/img", // 上传图片
+  otoCourseOptions: "/otoCourseOptions", //老师类型和年级和学科
+  otoCourse: "/otoCourse?", //预约老师的信息
+  exam: "/exam/packagePractice", //套卷练习的接口
+  classify: "/exam/classify", //套卷练习的分类
+  myStudy: "/myStudy/5", // 我的学习页面的学习数据
+  getmoney: "/coin/coinRank",
+  getbalance: "/coin/item",
+  getpoint: "/examPoint/42/28",
+  getstudycomment: "/myStudy/comment"
 };

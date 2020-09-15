@@ -22,23 +22,23 @@
             </div>
           </section>
           <div class="mine">
-            <div class="mine-item my-study">
+            <div class="mine-item my-study" @click="myClass">
               <p class="count">{{ classBan.courses }}</p>
               <p class="name">我的特色课</p>
               <p class="note">已购特色课程的学习</p>
             </div>
-            <div class="mine-item my-plan">
+            <div class="mine-item my-plan" @click="goyueke">
               <p class="count">{{ classBan.integral }}</p>
               <p class="name">一对一辅导</p>
               <p class="note">我的一对一老师辅导</p>
             </div>
-            <div class="mine-item my-period">
+            <div class="mine-item my-period" @click="studymoney">
               <p class="count">{{ classBan.oto }}</p>
               <p class="name">剩余学习币</p>
               <p class="note">查看剩余学习币</p>
             </div>
           </div>
-          <div class="to-set">
+          <div class="to-set" @click="goOto">
             <span>去约课</span>
           </div>
         </div>
@@ -150,7 +150,7 @@
             />
             <p>意见反馈</p>
           </div>
-          <div class="item">
+          <div class="item" @click="kfu">
             <img
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAYAAADjVADoAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0U1MDJERTY3ODVBMTFFOThFMjRCMzEzRDg2Mjg3RDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0U1MDJERTc3ODVBMTFFOThFMjRCMzEzRDg2Mjg3RDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozRTUwMkRFNDc4NUExMUU5OEUyNEIzMTNEODYyODdENSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozRTUwMkRFNTc4NUExMUU5OEUyNEIzMTNEODYyODdENSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnyGK20AAAtKSURBVHja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"
               alt
@@ -185,6 +185,16 @@ export default {
     this.getUser();
   },
   methods: {
+    studymoney() {
+      this.$router.push({
+        path: "/studymoney"
+      });
+    },
+    myClass() {
+      this.$router.push({
+        path: "/my-study"
+      });
+    },
     // 获取用户的所有的数据
     getUserInfo() {
       if (this.token) {
@@ -227,6 +237,23 @@ export default {
     Edit() {
       this.$router.push({
         path: "/info"
+      });
+    },
+    // 点击去约课
+    goOto() {
+      this.$router.push({
+        path: "/oto"
+      });
+    },
+    // 在线客服
+    kfu() {
+      this.$router.push({
+        path: "/message"
+      });
+    },
+    goyueke() {
+      this.$router.push({
+        path: "/record"
       });
     }
   },

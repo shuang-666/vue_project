@@ -145,6 +145,51 @@ const routes = [
     path: "/oto",
     name: "oto",
     component: () => import("../views/oto/Index.vue")
+  },
+  {
+    path: "/ques-collect",
+    name: "ques-collect",
+    component: () => import("../views/questCollect/Index.vue")
+  },
+  {
+    path: "/assess",
+    name: "assess",
+    component: () => import("../views/assess/Index.vue")
+  },
+  {
+    path: "/error-ques",
+    name: "error-ques",
+    component: () => import("../views/errorQues/Index.vue")
+  },
+  {
+    path: "/exam",
+    name: "exam",
+    component: () => import("../views/exam/Index.vue")
+  },
+  {
+    path: "/paper-package",
+    name: "paper-package",
+    component: () => import("../views/paper-package/Index.vue")
+  },
+  {
+    path: "/point",
+    name: "point",
+    component: () => import("../views/point/Index.vue")
+  },
+  {
+    path: "/my-study",
+    name: "my-study",
+    component: () => import("../views/myself/myClass.vue")
+  },
+  {
+    path: "/studymoney",
+    name: "studymoney",
+    component: () => import("../views/studyMoney/Index.vue")
+  },
+  {
+    path: "/balance",
+    name: "balance",
+    component: () => import("../views/studyMoney/balance.vue")
   }
 ];
 

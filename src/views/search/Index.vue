@@ -2,7 +2,7 @@
   <div class="search_box">
     <!-- 头部 -->
     <div class="search_header">
-      <span class="search_header_one">
+      <span class="search_header_one" @click="back">
         <van-icon name="arrow-left" size="22" />
       </span>
       <span class="search_header_two">
@@ -86,13 +86,15 @@ export default {
     }
   },
   methods: {
+    back() {
+      this.$router.go(-1);
+    },
     deleteData() {
       this.hotHistroy = [];
       localStorage.setItem("hotHistroy", JSON.stringify(this.hotHistroy));
     },
     //   点击回到输入框
     goInput(item) {
-      console.log(item);
       this.value = item;
       this.searchShow = true;
       this.cancelShow = false;
@@ -156,9 +158,9 @@ export default {
           console.log("符合输入框的数据", res);
           this.automatic = res.data.data.list;
           if (res.data.data.list == 0) {
-            this.photoShow = true;
+            this.photoShow = !this.photoShow;
           } else {
-            this.photoShow = false;
+            this.photoShow = !this.photoShow;
           }
         });
     }

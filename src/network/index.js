@@ -96,6 +96,38 @@ const network = {
   // 得到图片
   getPhoto(params) {
     return request(POST, path.photo, params)
+  },
+  //老师类型和年级和学科
+  getotoCourseOptions() {
+    return request(GET, path.otoCourseOptions)
+  },
+  //预约老师的信息
+  otoCourse(params) {
+    return request(GET, path.otoCourse, params)
+  },
+  // 套卷练习
+  getExam(params) {
+    return request(GET, path.exam, params)
+  },
+  // 套卷练习的分类
+  getClassify() {
+    return request(GET, path.classify)
+  },
+  // 我的学习页面
+  getMyStudy() {
+    return request(GET, path.myStudy)
+  },
+  getMoney() {
+    return request(GET, path.getmoney)
+  },
+  getBalance() {
+    return request(GET, path.getbalance)
+  },
+  getPoint() {
+    return request(GET, path.getpoint)
+  },
+  getStudyComment(params) {
+    return request(POST, path.getstudycomment, params)
   }
 };
 
